@@ -10,15 +10,16 @@ load_dotenv()
 INFURA_API_KEY = os.getenv("INFURA_API_KEY")
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS")
+NETWORK = os.getenv("NETWORK", "sepolia")
 
-infura_url = f"https://goerli.infura.io/v3/{INFURA_API_KEY}" #add infura api key here
+infura_url = f"https://{"NETWORK"}.infura.io/v3/{INFURA_API_KEY}" #add infura api key here
 web3=Web3(Web3.HTTPProvider(infura_url))
 
 #checking if contract is connected to blockchain
 if web3.is_connected():
     print(" + connected to eth testnet")
 else:
-    print("X connection failed, check infura api key")
+    print("X connection failed, check infura api key or something else ")
 
 
 contract_abi = [] #put ABI from hardhat output here

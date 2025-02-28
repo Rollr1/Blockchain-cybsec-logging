@@ -1,0 +1,5 @@
+.exit
+.exirt
+stop
+exit
+(await ethers.provider.getBalance("0xEa29ade648abEb499181Bb2721393B2801cD24BD")).toString()

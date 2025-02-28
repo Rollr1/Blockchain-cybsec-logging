@@ -1,8 +1,9 @@
+// SPDX-Licence-Identifier: MIT
 // solidity smart contract
 
 pragma solidity ^0.8.19;
 
-contract securitylog {
+contract SecurityLog {
     struct LogEntry {
         uint256 timestamp; //time that log was recorded
         string logHash; //hash of the log (SHA-256)
@@ -18,7 +19,7 @@ contract securitylog {
 //call this to add a hashed log to the blockchain
     function addLog(string memory _logHash, string memory _logType) public {
         logs[logCount] = LogEntry(block.timestamp, _logHash, _logType);
-        emit LogAddded(logCount, _logHash, _logType, block.timestamp);
+        emit LogAdded(logCount, _logHash, _logType, block.timestamp);
         logCount++;
     }
 
