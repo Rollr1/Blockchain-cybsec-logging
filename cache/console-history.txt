@@ -1,5 +1,3 @@
 .exit
-.exirt
-stop
-exit
-(await ethers.provider.getBalance("0xEa29ade648abEb499181Bb2721393B2801cD24BD")).toString()
+await contract.logCount();
+const contract = await ethers.getContractAt("SecurityLog", "0xB21839da33E2E0C835473E2381De8f8348ad14C7");

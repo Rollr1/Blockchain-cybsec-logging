@@ -12,7 +12,7 @@ PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS")
 NETWORK = os.getenv("NETWORK", "sepolia")
 
-infura_url = f"https://{"NETWORK"}.infura.io/v3/{INFURA_API_KEY}" #add infura api key here
+infura_url = f"https://{"NETWORK"}.infura.io/v3/{INFURA_API_KEY}"
 web3=Web3(Web3.HTTPProvider(infura_url))
 
 #checking if contract is connected to blockchain
@@ -21,8 +21,130 @@ if web3.is_connected():
 else:
     print("X connection failed, check infura api key or something else ")
 
-
-contract_abi = [] #put ABI from hardhat output here
+#this needs to get updated when I add more functions to smart contract
+#recompile hardhat too
+contract_abi = [
+    {
+      "anonymous": False,
+      "inputs": [
+        {
+          "indexed": True,
+          "internalType": "uint256",
+          "name": "logId",
+          "type": "uint256"
+        },
+        {
+          "indexed": False,
+          "internalType": "string",
+          "name": "logHash",
+          "type": "string"
+        },
+        {
+          "indexed": False,
+          "internalType": "string",
+          "name": "logType",
+          "type": "string"
+        },
+        {
+          "indexed": False,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "LogAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_logHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_logType",
+          "type": "string"
+        }
+      ],
+      "name": "addLog",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "logId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getLog",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "logCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "logs",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "logHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "logType",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ] #put ABI from hardhat output here
 
 contract = web3.eth.contract(address=CONTRACT_ADDRESS, abi=contract_abi)
 
