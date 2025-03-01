@@ -1,1 +1,5 @@
-this is the start of the project
+This branch of the project uses a solidity smart contract on the ethereum testnet sepolia to make immutable (not able to be tampered with) event/security logs. These logs, since stored on a decentralized blockchain, will be easily verifiable yet unalterable due to the very nature of the blockchain.
+
+Meaning hackers or bad actors cannot alter logs as a way to cover their tracks, as a result, forensic investigations can be performed signifantly easier as the logs will never be altered.
+
+However, each time a hashed log is transacted to the blockchain a gas fee must be paid and ~15 seconds must pass for the transaction to go through. So, the method of storing logs on a decentralized blockchain is slow and costly especially at a larger scale. As a result, a centralized approach will be taken instead. 
